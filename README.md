@@ -1,4 +1,4 @@
-bookmark_manager2
+Bookmark Manager
 =================
 
-Simple BookMark manager
+Simple BookMark manager that will store links in a Postgres database. 
