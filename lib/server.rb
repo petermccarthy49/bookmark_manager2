@@ -5,10 +5,8 @@ env = ENV["RACK_ENV"]  || "development"
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager2_#{env}")
 
 # this needs to be done after datamapper is initialized
-require 'sinatra'
 require 'data_mapper'
 require './lib/link'
-
 
 
 
