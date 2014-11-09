@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Link do
+describe 'Link' do
 
   it 'can create a link and add it to the database' do
     expect(Link.count).to eq 0
