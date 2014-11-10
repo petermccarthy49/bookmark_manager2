@@ -15,5 +15,5 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 get '/' do
-    'Hello bookmark_manager2!'
-  end
+  
+end
