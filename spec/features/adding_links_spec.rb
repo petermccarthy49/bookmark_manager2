@@ -11,6 +11,7 @@ feature "User adds a new link" do
     expect(link.title).to eq "google"
   end
 
+
   def add_link(url, title)
     within('#new-link') do
       fill_in 'url', :with => url
