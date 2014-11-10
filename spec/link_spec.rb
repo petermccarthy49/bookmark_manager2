@@ -1,3 +1,4 @@
+require 'link'
 require 'spec_helper'
 
 
