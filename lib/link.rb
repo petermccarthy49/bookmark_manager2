@@ -7,8 +7,9 @@ class Link
   include DataMapper::Resource
 
   has n, :tags, :through => Resource
+  # the ':through => Resource' is how datamapper creates the relationships 
 
-  # this block describes what resiurces the model will have
+  # this block describes what resources the model will have
   property :id,      Serial
   property :title,   String
   property :url,     String
