@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
   gem 'sinatra'
   gem 'cucumber'
+  gem 'bcrypt'
   gem 'cucumber-sinatra'
   gem 'data_mapper'
   gem 'dm-postgres-adapter'
