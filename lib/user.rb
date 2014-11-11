@@ -7,6 +7,10 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
+  # this is DMs method of validatoing the model which 
+  # won't be saved unless both p/w and p/w conf match 
+  validates_confirmation_of :password
+
   property :id,       Serial
   property :email,    String
 
@@ -21,6 +25,7 @@ class User
   # has both the p/d Hash and the Salt. We save it to the
   # db instead of the plain p/d for security reasons.
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
