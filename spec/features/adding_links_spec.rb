@@ -16,8 +16,8 @@ feature "User adds a new link" do
     visit '/'
     add_link("http://www.bbc.co.uk", "bbc", ["news", "entertainment"])
     link = Link.first
-    expect(link.tags).to include("news")
-    expect(link.tags).to include("entertainment")
+    expect(link.tags.map(&:text)).to include("news")
+    expect(link.tags.map(&:text)).to include("entertainment")
   end
 
 
@@ -25,7 +25,7 @@ feature "User adds a new link" do
     within('#new-link') do
       fill_in 'url', :with => url
       fill_in 'title', :with => title
-      fill_in 'tags', :with => tags.join(" ") # makes them space separated
+      fill_in 'tags', :with => tags.join(" ") # space separates tags
       click_button 'Add link'
     end
   end
