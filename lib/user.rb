@@ -2,14 +2,14 @@ require 'bcrypt'
 
 class User
 
-  include DataMapper::Resource
-
   attr_reader :password
   attr_accessor :password_confirmation
 
-  # this is DMs method of validatoing the model which 
-  # won't be saved unless both p/w and p/w conf match 
-  validates_confirmation_of :password
+  include DataMapper::Resource
+  # when we 'include' and call DataMapper as a class, 
+  # Resource is the module in that class
+  # include takes all the methods in the Resource module 
+  # and makes them class methods inside the User class
 
   property :id,       Serial
   property :email,    String
@@ -17,6 +17,10 @@ class User
   # this stores both p/w and Salt, its Text as String only 
   # holds 50 chars which is not only for Hash and Salt
   property :password_digest, Text
+
+  # this is DMs method of validating the model which 
+  # won't be saved unless both p/w and p/w conf match 
+  validates_confirmation_of :password
 
   # when assigned the p/D we don't store it directly
   # instead, we generate a password digest, that looks like this:

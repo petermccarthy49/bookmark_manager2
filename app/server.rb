@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'rack-flash'
 
 require './lib/link' # this needs to be done after datamapper is initialised
 require './lib/tag'
@@ -46,6 +47,7 @@ post '/users' do
     session[:user_id] = @user.id
     redirect to('/')
   else
+    flash[:notice] = ["Sorry, your passwords don't match"]
     erb :"users/new"
   end
 end
