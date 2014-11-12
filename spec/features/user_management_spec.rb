@@ -72,3 +72,32 @@ feature "User signs out" do
 end
 
 
+feature "User forgets password" do
+
+  before(:each) do
+    User.create(:email => "petermccarthy49@yahoo.co.uk",
+                :password => "test",
+                :password_confirmation => "test")
+  end
+
+  scenario "requests a password reset" do
+    visit '/users/reset'
+    expect(page).to have_content("Forgot password?")
+  end
+
+  scenario "enters an email that is registered" do
+    visit '/users/reset'
+    fill_in 'email', with: "petermccarthy49@yahoo.co.uk"
+    click_button 'Reset password'
+    expect(page).to have_content("Password reset link sent to your email address")   
+  end
+
+  scenario "enters an email that is not registered" do
+    visit '/users/reset'
+    fill_in 'email', with: "wrong@email.com"
+    click_button 'Reset password'
+    expect(page).to have_content("Sorry, wrong@email.com is not registered. Please sign up first!")   
+  end
+
+
+end
