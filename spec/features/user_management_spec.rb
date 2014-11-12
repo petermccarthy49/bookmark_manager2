@@ -1,7 +1,9 @@
 require 'spec_helper'
+
 require_relative 'helpers/session'
 
 include SessionHelpers
+
 
 feature "User signs up" do
 
@@ -25,6 +27,7 @@ feature "User signs up" do
   end
 
 end
+
 
 feature "User signs in" do
 
@@ -67,3 +70,5 @@ feature "User signs out" do
   end
 
 end
+
+
