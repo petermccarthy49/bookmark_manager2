@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
+require 'sinatra/partial'
 
 require './lib/link' # this needs to be done after datamapper is initialised
 require './lib/tag'
@@ -12,6 +13,7 @@ require_relative 'data_mapper_setup'
 enable :sessions
 set    :session_secret, 'super secret'
 use    Rack::Flash
+set    :partial_template_engine, :erb
 
 
 get '/' do
