@@ -1,4 +1,7 @@
 require 'spec_helper'
+require_relative 'helpers/session'
+
+include SessionHelpers
 
 feature "User signs up" do
 
@@ -8,7 +11,6 @@ feature "User signs up" do
     expect(User.first.email).to eq ("a@b.com")
   end
 
-  
   scenario "with a password that doesn't match" do
     expect{ sign_up('b@c.com', 'pass', 'wrong') }.to change(User, :count).by 0
     expect(current_path).to eq ('/users')
@@ -20,18 +22,6 @@ feature "User signs up" do
     expect{ sign_up }.to change(User, :count).by 0
     # expect(page).to have_content "This email is already registered"
     expect(page).to have_content "Email is already taken"
-  end  
-
-
-  def sign_up(email = "a@b.com", 
-              password = "oranges!",
-              password_confirmation = "oranges!")
-    visit '/users/new'
-    expect(page.status_code).to eq(200)
-    fill_in :email, :with => email
-    fill_in :password, :with => password
-    fill_in :password_confirmation, :with => password_confirmation
-    click_button "Sign up"
   end
 
 end
@@ -56,13 +46,6 @@ feature "User signs in" do
     expect(page).not_to have_content("Welcome, b@b.com")
     sign_in("b@b.com", "wrong")
     expect(page).not_to have_content("Welcome, b@b.com")
-  end
-
-  def sign_in(email, password)
-    visit '/sessions/new'
-    fill_in 'email', :with => email
-    fill_in 'password', :with => password
-    click_button 'Sign in'
   end
 
 end
