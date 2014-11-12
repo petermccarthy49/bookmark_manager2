@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "User signs up" do
 
-  scenario "when logging in" do
+  scenario "when signing up" do
     expect{ sign_up }.to change(User, :count).by(1)
     expect(page).to have_content("Welcome, a@b.com")
     expect(User.first.email).to eq ("a@b.com")
@@ -33,5 +33,23 @@ feature "User signs up" do
     fill_in :password_confirmation, :with => password_confirmation
     click_button "Sign up"
   end
+
+end
+
+feature "User signs in" do
+
+  before(:each) do
+    User.create(:email => "b@b.com",
+                :password => "test",
+                :password_confirmation => "test")
+  end
+
+  scenario "with correct credentials" do
+    visit '/'
+    expect(page).not_to have_content("Welcome, b@b.com")
+    sign_in("b@b.com", "test")
+    expect(page).to have_content("Welcome, b@b.com")
+  end
+
 
 end
