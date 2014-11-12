@@ -55,7 +55,7 @@ feature "User signs in" do
     visit '/'
     expect(page).not_to have_content("Welcome, b@b.com")
     sign_in("b@b.com", "wrong")
-    expect(page).to have_content("Welcome, b@b.com")
+    expect(page).not_to have_content("Welcome, b@b.com")
   end
 
   def sign_in(email, password)
