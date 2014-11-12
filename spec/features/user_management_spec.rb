@@ -65,5 +65,22 @@ feature "User signs in" do
     click_button 'Sign in'
   end
 
+end
+
+
+feature "User signs out" do
+
+  before(:each) do
+    User.create(:email => "b@b.com",
+                :password => "test",
+                :password_confirmation => "test")
+  end
+
+  scenario "whilst already signed in" do
+    sign_in("b@b.com", "test")
+    click_button "Sign out"
+    expect(page).to have_content("Good bye!")
+    expect(page).not_to have_content("Welcome, b@b.com")
+  end
 
 end
