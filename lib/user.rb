@@ -18,12 +18,14 @@ class User
   # holds 50 chars which is not only for Hash and Salt
   property :password_digest, Text
 
-  property :email, String, :unique => true, :message => "This email is already registered"
+  property :email, String, :unique => true#, :message => "This email is already registered"
+  # error msg commented out as rack-flash has built in msg for email duplication, (it seems!!??)
+
 
   # this is DMs method of validating the model which 
   # won't be saved unless both p/w and p/w conf match 
-  validates_confirmation_of :password
-  # validates_uniqueness_of   :email
+  validates_confirmation_of :password, :message => "Sorry, your passwords don't match"
+  validates_uniqueness_of   :email
 
   # when assigned the p/D we don't store it directly
   # instead, we generate a password digest, that looks like this:
