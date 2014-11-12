@@ -89,7 +89,7 @@ feature "User forgets password" do
     visit '/users/reset'
     fill_in 'email', with: "petermccarthy49@yahoo.co.uk"
     click_button 'Reset password'
-    expect(page).to have_content("Password reset link sent to your email address")   
+    expect(page).to have_content("Password reset link sent to your email address")
   end
 
   scenario "enters an email that is not registered" do

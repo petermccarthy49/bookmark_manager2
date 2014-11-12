@@ -1,0 +1,6 @@
+Forgot password?
+
+<form action="/users/reset" method="post">
+  Email: <input type="text" name="email" value="<%= @user.email %>">
+  <input type="submit" value="Reset password">
+</form>

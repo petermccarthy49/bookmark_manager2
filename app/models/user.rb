@@ -4,6 +4,8 @@ class User
 
   attr_reader :password
   attr_accessor :password_confirmation
+  attr_accessor :password_token
+  attr_accessor :password_token_timestamp
 
   include DataMapper::Resource
   # when we 'include' and call DataMapper as a class, 
