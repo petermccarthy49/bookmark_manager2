@@ -11,6 +11,7 @@ require_relative 'data_mapper_setup'
 
 enable :sessions
 set    :session_secret, 'super secret'
+use    Rack::Flash
 
 
 get '/' do
