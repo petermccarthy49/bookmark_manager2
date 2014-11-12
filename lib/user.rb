@@ -18,9 +18,12 @@ class User
   # holds 50 chars which is not only for Hash and Salt
   property :password_digest, Text
 
+  property :email, String, :unique => true, :message => "This email is already registered"
+
   # this is DMs method of validating the model which 
   # won't be saved unless both p/w and p/w conf match 
   validates_confirmation_of :password
+  # validates_uniqueness_of   :email
 
   # when assigned the p/D we don't store it directly
   # instead, we generate a password digest, that looks like this:
