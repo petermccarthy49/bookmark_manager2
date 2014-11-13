@@ -99,5 +99,32 @@ feature "User forgets password" do
     expect(page).to have_content("Sorry, wrong@email.com is not registered. Please sign up first!")   
   end
 
+end
+
+
+feature "User resets password" do
+
+  before(:each) do
+    User.create(:email => "petermccarthy49@yahoo.co.uk",
+                :password => "test",
+                :password_confirmation => "test",
+                :password_token => "1token")
+  end
+
+  scenario "User resets password with token" do
+    visit '/user/reset_password/1token'
+    digest = User.first.password_digest
+    expect(page).to have_content("Please enter your new password")
+    fill_in 'new_password', with: "replace"
+    fill_in 'new_password_confirmation', with: "replace"
+    click_button 'Reset Password'
+    expect(User.first.password_digest).not_to eq digest
+  end
 
 end
+
+
+
+
+
+
