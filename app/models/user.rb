@@ -4,9 +4,7 @@ class User
 
   attr_reader :password
   attr_accessor :password_confirmation
-  attr_accessor :password_token
-  attr_accessor :password_token_timestamp
-
+  
   include DataMapper::Resource
   # when we 'include' and call DataMapper as a class, 
   # Resource is the module in that class
@@ -14,14 +12,16 @@ class User
   # and makes them class methods inside the User class
 
   property :id,       Serial
-  property :email,    String
+  property :email, String, :unique => true#, :message => "This email is already registered"
+  # error msg commented out as rack-flash has built in msg for email duplication, (it seems!!??)
 
   # this stores both p/w and Salt, its Text as String only 
   # holds 50 chars which is not only for Hash and Salt
   property :password_digest, Text
+  property :password_token, String
+  property :password_token_timestamp, Text
 
-  property :email, String, :unique => true#, :message => "This email is already registered"
-  # error msg commented out as rack-flash has built in msg for email duplication, (it seems!!??)
+  
 
 
   # this is DMs method of validating the model which 

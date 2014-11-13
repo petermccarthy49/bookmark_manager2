@@ -108,11 +108,11 @@ feature "User resets password" do
     User.create(:email => "petermccarthy49@yahoo.co.uk",
                 :password => "test",
                 :password_confirmation => "test",
-                :password_token => "1token")
+                :password_token => ":token")
   end
 
   scenario "User resets password with token" do
-    visit '/user/reset_password/1token'
+    visit '/user/reset_password/:token'
     digest = User.first.password_digest
     expect(page).to have_content("Please enter your new password")
     fill_in 'new_password', with: "replace"
