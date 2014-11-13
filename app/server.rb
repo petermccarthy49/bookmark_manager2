@@ -22,4 +22,6 @@ require_relative 'controllers/users'
 enable :sessions
 set    :session_secret, 'super secret'
 use    Rack::Flash
+use    Rack::MethodOverride
 set    :partial_template_engine, :erb
+set    :static, true
