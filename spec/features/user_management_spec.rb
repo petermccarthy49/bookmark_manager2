@@ -117,7 +117,7 @@ feature "User resets password" do
     expect(page).to have_content("Please enter your new password")
     fill_in 'new_password', with: "replace"
     fill_in 'new_password_confirmation', with: "replace"
-    click_button 'Reset Password'
+    click_button 'Update'
     expect(User.first.password_digest).not_to eq digest
   end
 
