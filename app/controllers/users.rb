@@ -47,6 +47,5 @@ def create_new_timestamp
   Time.now
 end
 
-def send_email(user, token)
 
-end
+
