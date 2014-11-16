@@ -34,7 +34,7 @@ post '/users/reset' do
     "Password reset link sent to your email address"
     redirect to '/'
   else
-    flash[:errors] = ["Sorry, #{email} is not registered. Please sign up first!"]
+    flash[:errors] = ["Sorry, #{email} is not yet registered. Please sign up first!"]
     redirect to '/users/reset'
   end
 end

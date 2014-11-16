@@ -96,7 +96,7 @@ feature "User forgets password" do
     visit '/users/reset'
     fill_in 'email', with: "wrong@email.com"
     click_button 'Reset password'
-    expect(page).to have_content("Sorry, wrong@email.com is not registered. Please sign up first!")   
+    expect(page).to have_content("Sorry, wrong@email.com is not yet registered. Please sign up first!")   
   end
 
 end
